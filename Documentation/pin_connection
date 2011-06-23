@@ -1,0 +1,83 @@
+JP2-EA: ENA enables BOTH
+JP3-EAB: A B SEPERATELY
+JP4-CA: CA reflects BOTH
+JP5-CAB: A B SEPERATELY
+
+JP2-EA: EA input on CN1 enables BOTH power chips
+JP3-EAB: EA enables the M1 chip and EB enables the M2 chip
+JP4-CA: CA output on CN1 reflects BOTH power chips (combined output)
+JP5-CAB: CA output reflects the M1 chip current and CB reflects M2 chip current
+
+JP8-JMOTOR_SEL: select if use complementary PWM or not
+
+--------------------------------------------------------------------------------
+
+not available:
+PC12
+PC13
+PC15
+PE1
+
+half available:
+PE2
+PE3
+PE4
+PE5
+PE6
+
+not connected yet:
+
+connected:
+PB10(USART3_TX)	--		GPS_RX_I
+PB11(USART3_RX)	--		GPS_TX_O
+PE14			--		GPS_EN
+PE15			--		GPS_BOOT
+
+PA4				--		SD_CS
+PA5(SPI1_SCK)	--		SD_SCK
+PA6(SPI1_MISO)	--		SD_DOUT
+PA7(SPI1_MOSI)	--		SD_DIN
+
+PD0~PD7			--		FIFO D0~D7
+PC4				--		SCL			(PC2--SCCB_SIC_BIT)
+PC5				--		SDA			(PC3--SCCB_SID_BIT)
+PC6				--		VSYNC
+PC7				--		WE			(PC12--FIFO_WE_BIT)
+PC8				--		OE
+PC9				--		WRST
+PC10			--		RRST
+PC11			--		RCLK
+
+PA9(USART1_TX)	--		TXD
+PA10(USART1_RX)	--		RXD
+
+PB0(TIM3_CH3)	--		SERVO_PTZ1
+PB1(TIM3_CH4)	--		SERVO_PTZ2
+PB8(TIM4_CH3)	--		SERVO_TURN
+
+PA1(TIM2_CH2)	--		ECHO
+PE0				--		TRIG
+
+PA2(TIM5_CH3)	--		HALL_OUT
+
+PB9				--		PYRO_OUT
+
+PC0				--		GPLED0
+PC1				--		GPLED1
+PC2				--		GPLED2
+PC3				--		GPLED3
+
+PE13			--		EN-A
+PE12			--		EN-B
+????			--		CURR-A	(reserved)
+????			--		CURR-B	(reserved)
+PE9(TIM1_CH1)	--		PWM-A
+PE11(TIM1_CH2)	--		PWM-B(PWM-B1)
+PE8(TIM1_CH1N)	--		PWM-B(PWM-B2) complementary
+
+PB13(SPI2_SCK)	--		2401_SCK
+PB14(SPI2_MISO)	--		2401_MISO
+PB15(SPI2_MOSI)	--		2401_MOSI
+PB5				--		2401_CE
+PB6				--		2401_IRQ
+PB7				--		2401_CSN

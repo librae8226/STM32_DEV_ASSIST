@@ -1,0 +1,73 @@
+*** Creating Trace Output File '.\STM32_DQ_128K_64P\STM32_DQ_128K_64P.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\stm32_dq_128k_64p\startup_stm32f10x_md.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\main.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_it.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\c_lib_retarget.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\task_manage.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\general_task.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\servo.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\gps.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\serial_shell.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\datastructure.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\cpu_init.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\ltm022a69b.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\lcd_lib.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\sd_driver.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\ffext.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\nrf24l01.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\ov7725.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\misc.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_dma.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_exti.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_flash.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_fsmc.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_gpio.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_i2c.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_rcc.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_spi.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_tim.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_usart.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_wwdg.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_adc.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_bkp.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_can.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_cec.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_crc.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_dac.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_dbgmcu.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_iwdg.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_pwr.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_rtc.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\stm32f10x_sdio.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\core_cm3.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\system_stm32f10x.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_cpu_a.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_cpu_c.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_core.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_task.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_q.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_sem.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_time.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_flag.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_mbox.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_mem.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\os_mutex.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\ff.o"'
+### List of Objects: adding '".\stm32_dq_128k_64p\diskio.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M3 ".\stm32_dq_128k_64p\startup_stm32f10x_md.o" ".\stm32_dq_128k_64p\main.o" ".\stm32_dq_128k_64p\stm32f10x_it.o" ".\stm32_dq_128k_64p\c_lib_retarget.o" ".\stm32_dq_128k_64p\task_manage.o" ".\stm32_dq_128k_64p\general_task.o" ".\stm32_dq_128k_64p\servo.o" ".\stm32_dq_128k_64p\gps.o" ".\stm32_dq_128k_64p\serial_shell.o" ".\stm32_dq_128k_64p\datastructure.o" ".\stm32_dq_128k_64p\cpu_init.o" ".\stm32_dq_128k_64p\ltm022a69b.o" ".\stm32_dq_128k_64p\lcd_lib.o" ".\stm32_dq_128k_64p\sd_driver.o" ".\stm32_dq_128k_64p\ffext.o" ".\stm32_dq_128k_64p\nrf24l01.o" ".\stm32_dq_128k_64p\ov7725.o" ".\stm32_dq_128k_64p\misc.o" ".\stm32_dq_128k_64p\stm32f10x_dma.o" ".\stm32_dq_128k_64p\stm32f10x_exti.o" ".\stm32_dq_128k_64p\stm32f10x_flash.o" ".\stm32_dq_128k_64p\stm32f10x_fsmc.o" ".\stm32_dq_128k_64p\stm32f10x_gpio.o" ".\stm32_dq_128k_64p\stm32f10x_i2c.o" ".\stm32_dq_128k_64p\stm32f10x_rcc.o" ".\stm32_dq_128k_64p\stm32f10x_spi.o" ".\stm32_dq_128k_64p\stm32f10x_tim.o" ".\stm32_dq_128k_64p\stm32f10x_usart.o" ".\stm32_dq_128k_64p\stm32f10x_wwdg.o" ".\stm32_dq_128k_64p\stm32f10x_adc.o" ".\stm32_dq_128k_64p\stm32f10x_bkp.o" ".\stm32_dq_128k_64p\stm32f10x_can.o" ".\stm32_dq_128k_64p\stm32f10x_cec.o" ".\stm32_dq_128k_64p\stm32f10x_crc.o" ".\stm32_dq_128k_64p\stm32f10x_dac.o" ".\stm32_dq_128k_64p\stm32f10x_dbgmcu.o" ".\stm32_dq_128k_64p\stm32f10x_iwdg.o" ".\stm32_dq_128k_64p\stm32f10x_pwr.o" ".\stm32_dq_128k_64p\stm32f10x_rtc.o" ".\stm32_dq_128k_64p\stm32f10x_sdio.o" ".\stm32_dq_128k_64p\core_cm3.o" ".\stm32_dq_128k_64p\system_stm32f10x.o" ".\stm32_dq_128k_64p\os_cpu_a.o" ".\stm32_dq_128k_64p\os_cpu_c.o" ".\stm32_dq_128k_64p\os_core.o" ".\stm32_dq_128k_64p\os_task.o" ".\stm32_dq_128k_64p\os_q.o" ".\stm32_dq_128k_64p\os_sem.o" ".\stm32_dq_128k_64p\os_time.o" ".\stm32_dq_128k_64p\os_flag.o" ".\stm32_dq_128k_64p\os_mbox.o" ".\stm32_dq_128k_64p\os_mem.o" ".\stm32_dq_128k_64p\os_mutex.o" ".\stm32_dq_128k_64p\ff.o" ".\stm32_dq_128k_64p\diskio.o" --library_type=microlib --strict --scatter ".\STM32_DQ_128K_64P\STM32_DQ_128K_64P.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\STM32_DQ_128K_64P\STM32_DQ_128K_64P.map" -o ".\STM32_DQ_128K_64P\STM32_DQ_128K_64P.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\STM32_DQ_128K_64P\STM32_DQ_128K_64P.axf'
+### ADS-LD Command File: '.\STM32_DQ_128K_64P\STM32_DQ_128K_64P.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\STM32_DQ_128K_64P\STM32_DQ_128K_64P.lnp', Handle=0x00000274
+### Writing '.lnp' file
+### ADS-LD Command file '.\STM32_DQ_128K_64P\STM32_DQ_128K_64P.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

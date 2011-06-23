@@ -1,0 +1,14 @@
+STM32 DQ board development, with large amount of features such as:
+-	RTOS port
+-	File System port
+-	Serial Shell demo
+-	SD/TF card driver
+-	LCD driver
+-	RF driver
+-	Bluetooth Serial
+-	Camera image sample support
+-	etc.
+Use Keil RealView MDK IDE
+
+	by Librae - librae8226@gmail.com
+

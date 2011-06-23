@@ -1,0 +1,23 @@
+[Application]
+ApplicationPath=D:\Cortex-M3_Development\RTOS_STM32\Project\RIDE\STM3210C-EVAL\Project.elf
+CSX=0
+HighBankAddr=400000
+BootMode=0
+Format=ELF
+CodeOffset=0x0
+LoaderTool=ARM
+Target=ARM
+DebugTool=RLINK_CORTEX
+[Device]
+Name=STM32F107VCT6
+[ARMSigDrv options]
+CXS=0
+[Debug]
+Explore=No
+Startup=1
+StartupSymb=main
+ToolName=RLINK_CORTEX
+[SIM-ARM]
+Crystal=8.000
+[General]
+FreqXTal=8.000

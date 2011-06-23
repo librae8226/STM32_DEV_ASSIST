@@ -1,0 +1,605 @@
+%PDF-1.3
+%«Ïè¢
+1 0 obj
+<</Type/Font/Subtype/Type1/Name/F1/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>
+endobj
+2 0 obj
+<</Type/Font/Subtype/Type1/Name/F2/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>
+endobj
+3 0 obj
+<</Type/Font/Subtype/Type1/Name/F3/BaseFont/Helvetica-Oblique/Encoding/WinAnsiEncoding>>
+endobj
+4 0 obj
+<</Type/Font/Subtype/Type1/Name/F4/BaseFont/Helvetica-BoldOblique/Encoding/WinAnsiEncoding>>
+endobj
+5 0 obj
+<</Length 3319>>
+stream
+BT 1 0 0 1 72 762 Tm
+/F1 10 Tf 0 0 0 rg (/*********************** \(C\) COPYLEFT 2010 Leafgrass *************************/)Tj
+0 -12.0 TD
+T*
+(This project runs on uC/OS-II V2.52 and is based on STM32F103x\(ARM Cortex-M3 Core\))Tj
+T*
+T*
+(Take care of the configuration of project. There're some Include Paths while linking and some Defines which cannot be modified.)Tj
+T*
+T*
+(Procedure of driving  a device\(IMPORTANT!!!\):)Tj
+T*
+(        1. Connect hardware correctly.)Tj
+T*
+(        2. Prepare DEVICE_NAME.h and DEVICE_NAME.c.)Tj
+T*
+(        3. Enable clock of related components.)Tj
+T*
+(        4. Configure its related registers.)Tj
+T*
+(        5. Enable related interrupt while configure NVIC.)Tj
+T*
+(        6. Configure related IO pins.)Tj
+T*
+(        7. Finish test code and begin testing.)Tj
+T*
+T*
+(2010-06-10\( original \):)Tj
+T*
+(    Brief: Sucessfully port uCOS-II V2.52.)Tj
+T*
+T*
+(2010-06-11:)Tj
+T*
+(        Add code "SysTick_CounterCmd\(SysTick_Counter_Enable\);" in SysTick_Configuration\(\), solve the problem that the program can't get into)Tj
+T*
+(            SysTickHandler\(\), as below:)Tj
+T*
+(        /*******************************************************************************)Tj
+T*
+(        * Function Name  : SysTick_Config)Tj
+T*
+(        * Description    : Configures SysTick)Tj
+T*
+(        * Input          : None)Tj
+T*
+(        * Output         : None)Tj
+T*
+(        * Return         : None)Tj
+T*
+(        *******************************************************************************/)Tj
+T*
+(        void SysTick_Configuration\(void\))Tj
+T*
+(        {)Tj
+T*
+(            NVIC_SystemHandlerPriorityConfig\(SystemHandler_SysTick, 0, 1\);)Tj
+T*
+(            /* Configure HCLK clock as SysTick clock source */)Tj
+T*
+(            SysTick_CLKSourceConfig\(SysTick_CLKSource_HCLK_Div8\);)Tj
+T*
+(            /* SysTick interrupt each 1000 Hz with HCLK equal to 72MHz */)Tj
+T*
+(            SysTick_SetReload\(9000\);)Tj
+T*
+(            /* Enable the SysTick Interrupt */)Tj
+T*
+(            SysTick_ITConfig\(ENABLE\);)Tj
+T*
+(            SysTick_CounterCmd\(SysTick_Counter_Enable\); //Important!! Solve "the program can't get into SysTickHandler\(\)!!)Tj
+T*
+(        })Tj
+T*
+T*
+(2010-06-12\( update to V1.0 \):)Tj
+T*
+(        1.  Add EXTI8, EXTI9 on PC8, PC9, only for EXTI test.)Tj
+T*
+(        2.  Modify some comments in LCD5110_lib.)Tj
+T*
+(        3.  \(in main.c\) Modifiy tasks' priority LED_TASK_Prio 1 -> 5 START_TASK_Prio 2 -> 10)Tj
+T*
+(        4.  \(in main.c\) Modify code "OSTaskDel\(START_TASK_Prio\);" to "OSTaskSuspend\(START_TASK_Prio\);")Tj
+T*
+T*
+(2010-07-13)Tj
+T*
+(        1.Drive LTM022A69B LCD ok. Just use I/O to imitate SPI. Still cannot use internal SPI to drive it.)Tj
+T*
+(        2.Move LCD library of LTM022A69B into "LCD_lib.c".)Tj
+T*
+T*
+(2010-07-15:)Tj
+T*
+(        Add color bar display in LCD_test\(\).)Tj
+T*
+T*
+(2010-07-16\( update to V1.1 \):)Tj
+T*
+(        1.Solve problem about position error and color error, when display a set of 16-bit color data. Mainly resulted from CPU type,)Tj
+T*
+(            big endian or little endian. STM32F103RBT6 is little endian while in default set.)Tj
+T*
+(        2.Add Draw_img\(\);)Tj
+T*
+(        3.Add colorful characters and strings, add parameters about colors in display functions.\(colors are defined in LTM022A69B.h\))Tj
+ET
+endstream
+endobj
+6 0 obj
+<</Length 3263>>
+stream
+BT 1 0 0 1 72 762 Tm
+/F1 10 Tf 0 0 0 rg 0 -12.0 TD
+(2010-07-17:)Tj
+T*
+(        1.Add comments in LCD_Init\(\).)Tj
+T*
+(        2.Add parameter "color" to function Draw_dot\(\).)Tj
+T*
+(        3.Add function SetCursor\(\).)Tj
+T*
+(        4.Unify LCD related functions' name. Add prefix "LCD_".)Tj
+T*
+T*
+(2010-07-19:)Tj
+T*
+(        Modify data type in LCD_Lib. normal --> const. At one time, modify the pointers type to const.)Tj
+T*
+T*
+(2010-07-20:)Tj
+T*
+(        1.Correct the error that OSTimeDlyHMSM\(\) can't delay an accurate time, by modifying SysTick_Configuration\(\) to get an correct)Tj
+T*
+(        clock frequency.)Tj
+T*
+T*
+(2010-07-31:)Tj
+T*
+(        Add STM32_Init.c but is not referenced, for future use of Configuration Wizard.)Tj
+T*
+T*
+(2010-08-01:)Tj
+T*
+(        Configure SPI ok, and do some test\(SPI2 tx -> SPI1 rx, display on LCD\).)Tj
+T*
+T*
+(2010-08-03:)Tj
+T*
+(        1.Add SPI test code in main.c, SPI2 send data, SPI1 receive data , display info on LCD, use soft SPI.)Tj
+T*
+(        2.Add exported macro "USESPI" to choose if use SPI to drive LCD or not.)Tj
+T*
+(        3.After several days researching about hard SPI to drive LCD, failed. So switch to use a faster GPIO method, as below:)Tj
+T*
+(            Replace "#define LCD_RST_H\(\)        GPIO_SetBits\(LCD_CTRL_PORT, LCD_RST\)" in ST library)Tj
+T*
+(            with    "#define LCD_RST_H\(\)        \( LCD_CTRL_PORT->BSRR = LCD_RST \)")Tj
+T*
+(            for a faster LCD refresh speed.)Tj
+T*
+(        4.Modify name "LCD_SCI" to "LCD_SI", 'cause it means Serial Interface.)Tj
+T*
+(        5.Modify function name "LCD_test\(\)" to "LCD_Test\(\)".)Tj
+T*
+T*
+(2010-08-06:)Tj
+T*
+(        Comment off "typedef enum {FALSE = 0, TRUE = !FALSE} bool;" in stm32f10x.type.h in order to avoid warning.)Tj
+T*
+T*
+(2010-08-09:)Tj
+T*
+(        Prepare to update to v2.0.)Tj
+T*
+T*
+(2010-08-10\(update to v2.0\):)Tj
+T*
+(    Brief: Use ST's FWLib3.1.2.)Tj
+T*
+(        1. Set project\(Keil RealView MDK\).)Tj
+T*
+(            \(1\) RO memory area : IROM1 -- start at 0x08000000, size 0x20000.)Tj
+T*
+(            \(2\) RW memory area : IRAM1 -- start at 0x20000000, size 0x5000.)Tj
+T*
+(            \(3\) Output setup.)Tj
+T*
+(            \(4\) Listing setup, no assembler list.)Tj
+T*
+(            \(5\) C/C++ setup.)Tj
+T*
+(                Preprocessor Symbols : Define -- USE_STDPERIPH_DRIVER, STM32F10X_MD.)Tj
+T*
+(                Include Paths : ..\\;)Tj
+T*
+(                                ..\\..\\Libraries\\CMSIS\\Core\\CM3;)Tj
+T*
+(                                ..\\..\\Libraries\\STM32F10x_StdPeriph_Driver\\inc;)Tj
+T*
+(                                ..\\..\\App;)Tj
+T*
+(                                ..\\..\\Driver;)Tj
+T*
+(                                ..\\..\\OS;)Tj
+T*
+(                                ..\\..\\OS\\port)Tj
+T*
+(            \(6\) Linker, Use memory layout from target dialog.)Tj
+T*
+(            \(7\) Debug and Utilities, Cortex-M/R J-Link/J-Trace. Disable Trace.)Tj
+T*
+(        2. Modify code in "includes.h".)Tj
+T*
+(        3. Modify startup code, did not use the st original one. Port those used in FWLib2.0 instead.)Tj
+T*
+(            Of course, some code are revised for FWLib3.1.2\(StdPeriph_Driver and CMSIS\).)Tj
+T*
+(            Mainly rewrite the names of the ISR.)Tj
+ET
+endstream
+endobj
+7 0 obj
+<</Length 3762>>
+stream
+BT 1 0 0 1 72 762 Tm
+/F1 10 Tf 0 0 0 rg (            The most important two are : "PendSV_Handler" and "SysTick_Handler".)Tj
+0 -12.0 TD
+(                                    ---> "OSPendSV"       and "SysTick_Handler".)Tj
+T*
+(                                    \(in "os_cpu_a.asm"\)  \(in "stm32f10x_it.c"\))Tj
+T*
+(        4. Modify initial code for SysTick in "SysTick_Configuration\(\)" in "CPU_Init.c" because of the changing of library.)Tj
+T*
+(        Note : A general problem is that program always go into "B OSStartHang" in "OSStartHighRdy" in "os_cpu_a.asm", )Tj
+T*
+(                and will die in there... That's caused by program hasn't step into the correct ISR yet.)Tj
+T*
+(                Enable the SysTick interrupt, check if the name of Interrupt Service Routines are right, then all will be OK.)Tj
+T*
+(        5. Still some problem with retargeting "printf\(\)". If use "printf\(\)" in program, system wouldn't run.)Tj
+T*
+(        6. Change Project name to "RTOS_STM32".)Tj
+T*
+T*
+(2010-08-11\(update to v2.1\):)Tj
+T*
+(    Brief: Use ST's FWLib3.3.0.)Tj
+T*
+(        1. Modify Include Path in Target Options.)Tj
+T*
+(        2. Comment "typedef enum {FALSE = 0, TRUE = !FALSE} bool;" off in order to avoid error:)Tj
+T*
+(            "..\\stm32f10x.h\(454\): error:  #40: expected an identifier".)Tj
+T*
+T*
+(2010-08-12\(update to v2.2\):)Tj
+T*
+(        1. Remove the incorrect use of SPI in LCD display, add a new schedule\( maily used SPI busy flag \).)Tj
+T*
+(        2. Commen off code "assert_param\(IS_SPI_ALL_PERIPH\(SPIx\)\);" in  "SPI_I2S_SendData\(\)", )Tj
+T*
+(                                                                        "SPI_I2S_ReceiveData\(\)", )Tj
+T*
+(                                                                    and "SPI_I2S_GetFlagStatus" in "stm32f10x_spi.h", )Tj
+T*
+(            in order to improve LCD refresh frequency.)Tj
+T*
+(        3. Finish to retarget C library printf\(\) to UART.)Tj
+T*
+(            As a foundation, change the setup of KEIL in "Target Options" --> "Code Generation" --> tick "Use MicroLIB".)Tj
+T*
+(            There are still some problem with building, modify a few lines in "stm32f10x_startup.s" : )Tj
+T*
+(            ================================)Tj
+T*
+(            IF      :DEF:__MICROLIB           )Tj
+T*
+(            )Tj
+T*
+(            EXPORT  __initial_sp)Tj
+T*
+(            EXPORT  __heap_base)Tj
+T*
+(            EXPORT  __heap_limit)Tj
+T*
+(            )Tj
+T*
+(            ELSE)Tj
+T*
+(            )Tj
+T*
+(            IMPORT  __use_two_region_memory)Tj
+T*
+(            EXPORT  __user_initial_stackheap)Tj
+T*
+(            ================================)Tj
+T*
+(            Then rebuild.)Tj
+T*
+(            Add retarget code in main.c : )Tj
+T*
+(            ================================================================)Tj
+T*
+(            #ifdef __GNUC__)Tj
+T*
+(            // With GCC/RAISONANCE, small printf )Tj
+T*
+(            //  \(option LD Linker->Libraries->Small printf set to 'Yes'\) )Tj
+T*
+(            //  calls __io_putchar\(\))Tj
+T*
+(            #define PUTCHAR_PROTOTYPE int __io_putchar\(int ch\))Tj
+T*
+(            #else)Tj
+T*
+(            #define PUTCHAR_PROTOTYPE int fputc\(int ch, FILE *f\))Tj
+T*
+(            #endif // __GNUC__)Tj
+T*
+(            ----------------------------------------------------------------)Tj
+T*
+(            PUTCHAR_PROTOTYPE)Tj
+T*
+(            {)Tj
+T*
+(                // Place your implementation of fputc here)Tj
+T*
+(                // e.g. write a character to the USART)Tj
+T*
+(                USART_SendData\(USARTx, \(u8\)ch\);)Tj
+T*
+(            )Tj
+T*
+(                // Loop until the end of transmission)Tj
+T*
+(                while \(USART_GetFlagStatus\(USART1, USART_FLAG_TC\) == RESET\))Tj
+T*
+(                {})Tj
+ET
+endstream
+endobj
+8 0 obj
+<</Length 3467>>
+stream
+BT 1 0 0 1 72 762 Tm
+/F1 10 Tf 0 0 0 rg (            )Tj
+0 -12.0 TD
+(                return ch;)Tj
+T*
+(            })Tj
+T*
+(            ================================================================)Tj
+T*
+T*
+(2010-08-14\(update to v2.3\): )Tj
+T*
+(        1. Rewrite the different part of code into its C file.)Tj
+T*
+(        2. Drive TIM3 output PWM wave successfully.)Tj
+T*
+(        3. Add "servo" file, for servo control.)Tj
+T*
+T*
+(2010-08-19\(update to v2.4\):)Tj
+T*
+(    Brief: GPS data receive ok.)Tj
+T*
+(        1. Add "gps" file.)Tj
+T*
+(        2. Add code in "USART3_IRQHandler\(\)", mainly to receive data from GPS. But there's still someting confusing, )Tj
+T*
+(            that the pair "USART_ITConfig\(USART3, USART_IT_RXNE, DISABLE\);" and "USART_ITConfig\(USART3, USART_IT_RXNE, ENABLE\);")Tj
+T*
+(            cannot work well. Because once use them, some data will be lost.)Tj
+T*
+T*
+(2010-08-22:)Tj
+T*
+(        Refresh firmware of GPS, modify to Baudrate 9600, China timezone, WGS-84 coordinate.)Tj
+T*
+T*
+(2010-09-02:)Tj
+T*
+(        Replace those two old startup files "cortexm3_macro.s" and "stm32f10x_startup.s" with the one "startup_stm32f10x_md.s" )Tj
+T*
+(        which is created by MCD Application Team in FWLib3.3.0.)Tj
+T*
+T*
+(2010-09-13:)Tj
+T*
+(        1. Add general_task.h and .c for miscellaneous experimental purpose.)Tj
+T*
+(        2. Add uart output infomation in booting stage.)Tj
+T*
+(        3. Add macro "LED_TOGGLE\(\)" use "\(GPIO_ReadOutputDataBit\(GPIOA, GPIO_Pin_1\)\)")Tj
+T*
+(        4. Create Logo:)Tj
+T*
+(                                       _)Tj
+T*
+(                     _                / /)Tj
+T*
+(                    | |    ___  __ _ _| |_ __ _ _  __  __ _   _   _)Tj
+T*
+(                    | |   / _ \\/ _` |_   _/ _` | \\/ _\)/ _` | / / / /)Tj
+T*
+(                    | |_ _  __\( \(_| | | |  \(_| | | | \( \(_| | \\ \\ \\ \\)Tj
+T*
+(                    |_ _ _\\___|\\__,_| | | \\__, / | |  \\__,_| /_/ /_/)Tj
+T*
+(                                      /_/ \\_ _/)Tj
+T*
+(        5. EXTI again.)Tj
+T*
+(            setup procedure: GPIO IN FLOATING -> NVIC IRQ -> EXTI Config -> _it.c)Tj
+T*
+T*
+(2010-09-16:)Tj
+T*
+(        1. Modify GPIOC Pin6 mode to "GPIO_Mode_IPU"\(input with pull-up\) for EXTI Line6 test.)Tj
+T*
+(        2. Add LED4 control macro at PD2.)Tj
+T*
+(        3. ADC1 with DMA test OK. Related code are placed in file "general_task".\(Be carful of input: VREF- <= VIN <= VREF+\))Tj
+T*
+(        4. The same time internal temperature sensor tesk OK.)Tj
+T*
+T*
+(2010-09-17:)Tj
+T*
+(        fatfs 0.07e test ok for itself, but some error occured during linking in this project if add app code\(SD_Test\(\)\) in "general_task.c".)Tj
+T*
+T*
+(2010-09-18:)Tj
+T*
+(        1. Find the reason that some error occured during linking is about RAM overflow.)Tj
+T*
+(            A low class mistake caused by the "wbuff2[512*26]" being so large and stored as ZI data in RAM, therefore....)Tj
+T*
+(            Just decrease the size, modify it to "512*10".)Tj
+T*
+(        2. Another error occured, while runing fatfs test, it always goes into "HardFault_Handler\(\)", currently do not know why.)Tj
+T*
+(            If comment off those w/r related wbuff2 which cause Hard Fault, fatfs works well. It is able to recognize SD card info.)Tj
+T*
+(            Almost test fatfs at ucos-ii ok, but sometimes Hard Fault stills ocurred.)Tj
+T*
+T*
+(2010-09-25\(update to v2.5\):)Tj
+T*
+(    Brief: FatFs v0.07e along with uCOS-II v2.52.)Tj
+ET
+endstream
+endobj
+9 0 obj
+<</Length 1578>>
+stream
+BT 1 0 0 1 72 762 Tm
+/F1 10 Tf 0 0 0 rg (        1. FatFs test ok in uCOS-II. Fix the Hard Fault bug while w/r files. Just increase the stack size of this task in "task_manage.h".)Tj
+0 -12.0 TD
+(            GENERAL_STK_SIZE     64 -> 1024)Tj
+T*
+(            \(OH MY! What a shame! It takes me large amount of time to find it out.... - -! \))Tj
+T*
+(        2. Add LED3 blink into SD operation in "__inline u8 _spi_read_write\(u8 data\)" of SD_Driver.c.)Tj
+T*
+(        3. Move "ADC_SoftwareStartConvCmd\(ADC1, ENABLE\);" from general_task to CPU_Init\(ADC_Configuration\(\)\).)Tj
+T*
+T*
+(2010-09-25)Tj
+T*
+(        Test Software Reset by write to SCB_AIRCR\(System Control Block_Application Interrupt and Reset Control Register\).)Tj
+T*
+(            \(added to test in "EXTI9_5_IRQHandler\(void\)"\))Tj
+T*
+T*
+(2010-11-02)Tj
+T*
+(        Add another task "TaskLed3" just for fun.)Tj
+T*
+T*
+(2010-11-09)Tj
+T*
+(        1. Create another target. Add device STM32F103VC to project. Now there are two targets:)Tj
+T*
+(            STM32_DQ_128K_64P, STM32_CORE_512K_100P)Tj
+T*
+(        2. Add platform_conf.h.)Tj
+T*
+T*
+(2010-11-10\(update to v3.0.0\))Tj
+T*
+(        1. Add if "#define CHECK_INSERT == TRUE" in "SD_Driver.h" for SD\(TRUE\) or TF card.)Tj
+T*
+(            On STM32_MAIN board, there's no insertion checking.)Tj
+T*
+(        2. Begin to use two bits of decimal for version control.)Tj
+T*
+T*
+(2011-11-12\(v3.0.1\))Tj
+T*
+(        1. Add function "Serial_Echo\(\)" in "general_task.c".)Tj
+T*
+T*
+(/*********************** \(C\) COPYLEFT 2010 Leafgrass *************************/)Tj
+ET
+endstream
+endobj
+10 0 obj
+<</ProcSet[/PDF/Text]
+/Font<</F1 1 0 R/F2 2 0 R/F3 3 0 R/F4 4 0 R>> >>
+endobj
+11 0 obj
+<</Type/Page/Parent 16 0 R
+/MediaBox[ 0 0 595 842]
+/Contents 5 0 R
+/Resources 10 0 R
+>>
+endobj
+12 0 obj
+<</Type/Page/Parent 16 0 R
+/MediaBox[ 0 0 595 842]
+/Contents 6 0 R
+/Resources 10 0 R
+>>
+endobj
+13 0 obj
+<</Type/Page/Parent 16 0 R
+/MediaBox[ 0 0 595 842]
+/Contents 7 0 R
+/Resources 10 0 R
+>>
+endobj
+14 0 obj
+<</Type/Page/Parent 16 0 R
+/MediaBox[ 0 0 595 842]
+/Contents 8 0 R
+/Resources 10 0 R
+>>
+endobj
+15 0 obj
+<</Type/Page/Parent 16 0 R
+/MediaBox[ 0 0 595 842]
+/Contents 9 0 R
+/Resources 10 0 R
+>>
+endobj
+16 0 obj
+<</Type/Pages/Kids[
+11 0 R
+12 0 R
+13 0 R
+14 0 R
+15 0 R
+]/Count 5
+>>
+endobj
+17 0 obj
+<</Type/Catalog/Pages 16 0 R >>
+endobj
+xref
+0 18
+0000000000 65535 f 
+0000000015 00000 n 
+0000000111 00000 n 
+0000000212 00000 n 
+0000000316 00000 n 
+0000000424 00000 n 
+0000003793 00000 n 
+0000007106 00000 n 
+0000010918 00000 n 
+0000014435 00000 n 
+0000016063 00000 n 
+0000016150 00000 n 
+0000016254 00000 n 
+0000016358 00000 n 
+0000016462 00000 n 
+0000016566 00000 n 
+0000016670 00000 n 
+0000016754 00000 n 
+trailer
+<< /Size 18 /Root 17 0 R
+>>
+startxref
+16802
+%%EOF
